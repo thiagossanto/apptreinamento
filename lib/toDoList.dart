@@ -8,6 +8,10 @@ class ToDoList extends StatefulWidget {
 }
 
 class _ToDoListState extends State<ToDoList> {
+  
+List<String> lista = List[];
+final TextEditingController _controllertarefa = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +23,7 @@ class _ToDoListState extends State<ToDoList> {
         Row(children: [
             Container( width: 280, margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: TextFormField(
+              controller: _controllertarefa,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Adicionar'
