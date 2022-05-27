@@ -21,11 +21,16 @@ class _ToDoListState extends State<ToDoList> {
             child: TextFormField(
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
-                hintText: 'Adicionarr'
+                hintText: 'Adicionar'
               ),
             ),
           ),
-          IconButton(iconSize: 50 ,onPressed: (){}, icon: const Icon(Icons.add))
+          Container( margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+           child: IconButton(color: Colors.red ,iconSize: 50 ,onPressed: (){}, icon: const Icon(Icons.add_circle)),
+            ),
+        ],),
+        ListView(children: [
+          
         ],)
       ]),
     );
