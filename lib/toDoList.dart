@@ -8,12 +8,11 @@ class ToDoList extends StatefulWidget {
 }
 
 class _ToDoListState extends State<ToDoList> {
-  
-List<String> lista = [];
-final TextEditingController _controllertarefa = TextEditingController();
+  List<String> lista = [];
+  final TextEditingController _controllertarefa = TextEditingController();
 
- @override
-void initState() {
+  @override
+  void initState() {
     super.initState();
     _controllertarefa.addListener(() {
       final String text = _controllertarefa.text.toLowerCase();
@@ -26,7 +25,7 @@ void initState() {
     });
   }
 
- @override
+  @override
   void dispose() {
     _controllertarefa.dispose();
     super.dispose();
@@ -35,37 +34,48 @@ void initState() {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('To do List Page'),
-        centerTitle: true
-        ),
+      appBar: AppBar(title: const Text('To do List Page'), centerTitle: true),
       body: Column(children: [
-        Row(children: [
-            Container( width: 280, margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            child: TextFormField(
-              controller: _controllertarefa,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Adicionar'
+        Row(
+          children: [
+            Container(
+              width: 280,
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              child: TextFormField(
+                controller: _controllertarefa,
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(), labelText: 'Adicionar'),
               ),
             ),
-          ),
-          Container( margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-           child: IconButton(color: Colors.red, iconSize: 50 ,onPressed: (){
-             setState(() {
-                lista.add(_controllertarefa.text);
-                _controllertarefa.clear();
-             });
-           }, icon: const Icon(Icons.add_circle)),
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: IconButton(
+                  color: Colors.red,
+                  iconSize: 50,
+                  onPressed: () {
+                    setState(() {
+                      lista.add(_controllertarefa.text);
+                      _controllertarefa.clear();
+                    });
+                  },
+                  icon: const Icon(Icons.add_circle)),
             ),
-        ],),
+          ],
+        ),
+        const SizedBox(height: 15),
         Expanded(
           child: ListView.builder(
             itemCount: lista.length,
             itemBuilder: (context, index) {
-               return Card(
-                child: ListTile(
-                  title: Text(lista[index]),
+              return Container(
+                child: Card(
+                  child: Row(
+                    children: [
+                      Text(lista[index]),
+                      IconButton(onPressed: (){}, icon: const Icon(Icons.check)),
+                      IconButton(onPressed: (){}, icon: const Icon(Icons.delete))
+                    ],
+                  ),
                 ),
               );
             },
