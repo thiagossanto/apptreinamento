@@ -7,29 +7,10 @@ class ToDoList extends StatefulWidget {
   State<ToDoList> createState() => _ToDoListState();
 }
 
+List<String> lista = [];
+
 class _ToDoListState extends State<ToDoList> {
-  List<String> lista = [];
   final TextEditingController _controllertarefa = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    _controllertarefa.addListener(() {
-      final String text = _controllertarefa.text.toLowerCase();
-      _controllertarefa.value = _controllertarefa.value.copyWith(
-        text: text,
-        selection:
-            TextSelection(baseOffset: text.length, extentOffset: text.length),
-        composing: TextRange.empty,
-      );
-    });
-  }
-
-  @override
-  void dispose() {
-    _controllertarefa.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,20 +48,28 @@ class _ToDoListState extends State<ToDoList> {
           child: ListView.builder(
             itemCount: lista.length,
             itemBuilder: (context, index) {
-              return Container(
-                child: Card(
-                  child: Row(
-                    children: [
-                      Text(lista[index]),
-                      IconButton(onPressed: (){}, icon: const Icon(Icons.check)),
-                      IconButton(onPressed: (){}, icon: const Icon(Icons.delete))
-                    ],
-                  ),
+              return Card(
+                child: Row(
+                  children: [
+                    const SizedBox(width: 10),
+                    SizedBox(width: 290, child: Text(lista[index])),
+                    IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.check_circle),
+                        color: Colors.red),
+                    IconButton(
+                        onPressed: () {
+                          lista.removeAt(index);
+                          setState(() {});
+                        },
+                        icon: const Icon(Icons.delete),
+                        color: Colors.red)
+                  ],
                 ),
               );
             },
           ),
-        )
+        ),
       ]),
     );
   }
