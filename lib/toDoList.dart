@@ -7,7 +7,15 @@ class ToDoList extends StatefulWidget {
   State<ToDoList> createState() => _ToDoListState();
 }
 
-List<String> lista = [];
+List<tarefas> lista = [];
+
+class changeColor {}
+
+class tarefas {
+  String nome = '';
+  bool check = false;
+  Color cor = Colors.red;
+}
 
 class _ToDoListState extends State<ToDoList> {
   final TextEditingController _controllertarefa = TextEditingController();
@@ -35,8 +43,12 @@ class _ToDoListState extends State<ToDoList> {
                   iconSize: 50,
                   onPressed: () {
                     setState(() {
-                      lista.add(_controllertarefa.text);
-                      _controllertarefa.clear();
+                      if (_controllertarefa.text != "") {
+                        tarefas line = tarefas();
+                        line.nome = _controllertarefa.text;
+                        lista.add(line);
+                        _controllertarefa.clear();
+                      }
                     });
                   },
                   icon: const Icon(Icons.add_circle)),
@@ -52,11 +64,19 @@ class _ToDoListState extends State<ToDoList> {
                 child: Row(
                   children: [
                     const SizedBox(width: 10),
-                    SizedBox(width: 290, child: Text(lista[index])),
+                    SizedBox(width: 290, child: Text(lista[index].nome)),
                     IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.check_circle),
-                        color: Colors.red),
+                        onPressed: () {
+                          lista[index].check = !lista[index].check;
+                          if (lista[index].check) {
+                            lista[index].cor = Colors.green;
+                          } else {
+                            lista[index].cor = Colors.red;
+                          }
+                          setState(() {});
+                        },
+                        icon:
+                            Icon(Icons.check_circle, color: lista[index].cor)),
                     IconButton(
                         onPressed: () {
                           lista.removeAt(index);
