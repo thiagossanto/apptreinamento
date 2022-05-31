@@ -1,4 +1,4 @@
-import 'package:apptreinamento/home_page.dart';
+import 'package:apptreinamento/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
