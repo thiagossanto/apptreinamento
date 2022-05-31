@@ -1,5 +1,5 @@
-import 'package:apptreinamento/github.dart';
-import 'package:apptreinamento/toDoList.dart';
+import 'package:apptreinamento/pages/github.dart';
+import 'package:apptreinamento/pages/toDoList.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
